@@ -12,4 +12,5 @@ func main() {
 		calendar.AddEvents("Событие№"+strconv.Itoa(i+1), time.Now() )
 	}
 	calendar.ShowEvents()
+	time.Sleep(10 * time.Second)
 }
