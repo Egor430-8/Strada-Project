@@ -1,16 +1,20 @@
 package main
 
 import (
-	"strconv"
-	"time"
-
 	"github.com/Egor430-8/project/calendar"
+	"github.com/Egor430-8/project/errorhandling"
+	"github.com/Egor430-8/project/events"
 )
 
 func main() {
-	for i := range 5 {
-		calendar.AddEvents("Событие№"+strconv.Itoa(i+1), time.Now() )
-	}
-	calendar.ShowEvents()
-	time.Sleep(10 * time.Second)
+	event, err := events.NewEvent("Бег", "2026/03/13")
+	errorhandling.ErrorHandling(err)
+	err = calendar.AddEvents("event1", event)
+	errorhandling.ErrorHandling(err)
+	event, err = events.NewEvent("Теннис", "2026/05/24")
+	errorhandling.ErrorHandling(err)
+	err = calendar.AddEvents("event2", event)
+	errorhandling.ErrorHandling(err)
+	err = calendar.ShowEvents()
+	errorhandling.ErrorHandling(err)
 }
