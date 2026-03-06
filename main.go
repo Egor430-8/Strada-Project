@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/Egor430-8/project/calendar"
-	"github.com/Egor430-8/project/errorhandling"
+	"github.com/Egor430-8/project/errorHandling"
 	"github.com/Egor430-8/project/events"
 )
 
