@@ -1,13 +1,18 @@
 package main
 
 import (
+	"bufio"
+	"fmt"
+	"os"
+
 	"github.com/Egor430-8/project/calendar"
 	"github.com/Egor430-8/project/events"
 	"github.com/Egor430-8/project/validation"
 )
 
 func main() {
-	err := calendar.ShowEvents() 
+	scanner := bufio.NewScanner(os.Stdin)
+	err := calendar.ShowEvents()
 	validation.ErrorHandling(err) //Список событий пуст!
 
 	event, err := events.NewEvent("Бег1", "2026/03/13 13:00")
@@ -31,13 +36,13 @@ func main() {
 	err = calendar.EditEvent("event1", "Бег", "2026/03/13 13:30")
 	validation.ErrorHandling(err) //Были введены идентичные данные!
 
-	err = calendar.EditEvent("event", "...", "...") 
+	err = calendar.EditEvent("event", "...", "...")
 	validation.ErrorHandling(err) //События с таким именем не существует!
 
-	err = calendar.EditEvent("event2", "Тен.нис", "2026/05/24 16:45") 
+	err = calendar.EditEvent("event2", "Тен.нис", "2026/05/24 16:45")
 	validation.ErrorHandling(err) //Заголовок введён некорректно!
 
-	err = calendar.EditEvent("event2", "Теннис", "2026/13/24 16:45") 
+	err = calendar.EditEvent("event2", "Теннис", "2026/13/24 16:45")
 	validation.ErrorHandling(err) //Неверный формат даты!
 
 	err = calendar.AddEvents("event2", event)
@@ -57,4 +62,6 @@ func main() {
 
 	err = calendar.ShowEvents()
 	validation.ErrorHandling(err)
+	fmt.Println("Для завершения программы нажмите Enter")
+	scanner.Scan()
 }
