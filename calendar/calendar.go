@@ -1,7 +1,6 @@
 package calendar
 
 import (
-	"errors"
 	"fmt"
 	"time"
 
@@ -11,19 +10,22 @@ import (
 )
 
 var AllEvents = make(map[string]events.Event)
-var TitleError = errors.New("События с таким именем не существует!")
 
-func AddEvents(name string, event events.Event) error {
-	if _, ok := AllEvents[name]; ok {
-		return errors.New("Событие с именем " + name + " уже существует!")
+func AddEvents(title string, dateStr string) (string, error){
+	event, err := events.NewEvent(title, dateStr)
+	if err != nil {
+		return "", err
 	}
-	AllEvents[name] = event
-	return nil
+	if _, ok := AllEvents[event.ID]; ok {
+		return "", validation.TitleAlreadyExistsError
+	}
+	AllEvents[event.ID] = *event
+	return event.ID, nil
 }
 
 func ShowEvents() error {
 	if len(AllEvents) == 0 {
-		return errors.New("Список событий пуст!")
+		return validation.EmptyListError
 	}
 	for _, v := range AllEvents {
 		fmt.Println(v.Title, "-", v.StartAt.Format("2006-01-02 15:04"))
@@ -31,47 +33,47 @@ func ShowEvents() error {
 	return nil
 }
 
-func DeleteEvent(name string) error {
-	err := isEventExist(name)
+func DeleteEvent(ID string) error {
+	err := isEventExist(ID)
 	if err != nil {
 		return err
 	}
-	delete(AllEvents, name)
+	delete(AllEvents, ID)
 	return nil
 }
 
-func EditEvent(name, title, dateStr string) error {
-	err, time := fullValidation(name, title, dateStr)
+func EditEvent(ID, title, dateStr string) error {
+	err, time := fullValidation(ID, title, dateStr)
 	if err != nil {
 		return err
 	}
-	AllEvents[name] = events.Event{
-		Title:   title,
+	AllEvents[ID] = events.Event{
+		Title:   title,	
 		StartAt: time,
 	}
 	return nil
 }
 
-func isEventExist(name string) error {
-	if _, ok := AllEvents[name]; !ok {
-		return TitleError
+func isEventExist(ID string) error {
+	if _, ok := AllEvents[ID]; !ok {
+		return validation.TitleAlreadyExistsError
 	}
 	return nil
 }
 
-func fullValidation(name, title, dateStr string) (error, time.Time) {
-	if _, ok := AllEvents[name]; !ok {
-		return TitleError, time.Now()
+func fullValidation(ID, title, dateStr string) (error, time.Time) {
+	if _, ok := AllEvents[ID]; !ok {
+		return validation.TitleNotExistError, time.Now()
 	}
 	if ok := validation.IsValidTitle(title); !ok {
-		return errors.New("Заголовок введён некорректно!"), time.Now()
+		return validation.IncorrectTitleError, time.Now()
 	}
 	actualTime, err := dateparse.ParseAny(dateStr)
 	if err != nil {
-		return errors.New("Неверный формат даты!"), time.Now()
+		return validation.IncorrectDateError, time.Now()
 	}
-	if AllEvents[name].Title == title && AllEvents[name].StartAt == actualTime {
-		return errors.New("Были введены идентичные данные!"), time.Now()
+	if AllEvents[ID].Title == title && AllEvents[ID].StartAt == actualTime {
+		return validation.IdenticalInformationError, time.Now()
 	}
 	return nil, actualTime
 }
