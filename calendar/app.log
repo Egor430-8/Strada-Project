@@ -1,0 +1,27 @@
+INFO: 2026/04/01 06:12:18 calendar.go:40: Запуск фукции AddEvent
+INFO: 2026/04/01 06:12:18 events.go:29: Создание нового ивента через NewEvent
+INFO: 2026/04/01 06:12:18 calendar.go:40: Запуск фукции AddEvent
+INFO: 2026/04/01 06:12:18 events.go:29: Создание нового ивента через NewEvent
+INFO: 2026/04/01 06:12:18 calendar.go:40: Запуск фукции AddEvent
+INFO: 2026/04/01 06:12:18 events.go:29: Создание нового ивента через NewEvent
+INFO: 2026/04/01 06:14:58 calendar.go:85: Запуск фукции DeleteEvent
+INFO: 2026/04/01 06:14:58 calendar.go:40: Запуск фукции AddEvent
+INFO: 2026/04/01 06:14:58 events.go:29: Создание нового ивента через NewEvent
+INFO: 2026/04/01 06:14:58 calendar.go:40: Запуск фукции AddEvent
+INFO: 2026/04/01 06:14:58 events.go:29: Создание нового ивента через NewEvent
+INFO: 2026/04/01 06:14:58 calendar.go:40: Запуск фукции AddEvent
+INFO: 2026/04/01 06:14:58 events.go:29: Создание нового ивента через NewEvent
+INFO: 2026/04/01 06:15:10 calendar.go:85: Запуск фукции DeleteEvent
+INFO: 2026/04/01 06:15:10 calendar.go:40: Запуск фукции AddEvent
+INFO: 2026/04/01 06:15:10 events.go:29: Создание нового ивента через NewEvent
+INFO: 2026/04/01 06:15:10 calendar.go:40: Запуск фукции AddEvent
+INFO: 2026/04/01 06:15:10 events.go:29: Создание нового ивента через NewEvent
+INFO: 2026/04/01 06:15:10 calendar.go:40: Запуск фукции AddEvent
+INFO: 2026/04/01 06:15:10 events.go:29: Создание нового ивента через NewEvent
+INFO: 2026/04/01 06:15:58 calendar.go:85: Запуск фукции DeleteEvent
+INFO: 2026/04/01 06:15:58 calendar.go:40: Запуск фукции AddEvent
+INFO: 2026/04/01 06:15:58 events.go:29: Создание нового ивента через NewEvent
+INFO: 2026/04/01 06:15:58 calendar.go:40: Запуск фукции AddEvent
+INFO: 2026/04/01 06:15:58 events.go:29: Создание нового ивента через NewEvent
+INFO: 2026/04/01 06:15:58 calendar.go:40: Запуск фукции AddEvent
+INFO: 2026/04/01 06:15:58 events.go:29: Создание нового ивента через NewEvent
